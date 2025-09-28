@@ -7,7 +7,7 @@
 #include <conio.h>
 #include <fstream>
 
-#include "keyboardCommands.h"
+#include "consoleCommands.h"
 #include "keyboardMenuControll.h"
 
 using namespace std;
@@ -20,7 +20,7 @@ int infoPrintPosY = startMenuPrintY + menuSize + 1;
 
 // print all of the disks
 void listAllTheDisks(string disks[], int& count) {
-    DWORD drives = GetLogicalDrives();
+    DWORD drives = GetLogicalDrives(); 
     count = 0;
 
     for (char letter = 'A'; letter <= 'Z'; ++letter) {

@@ -1,6 +1,6 @@
 #include "windows.h"
 #include "iostream"
-#include "keyboardCommands.h"
+#include "consoleCommands.h"
 
 using namespace std;
 
