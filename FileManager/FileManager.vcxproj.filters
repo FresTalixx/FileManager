@@ -24,12 +24,18 @@
     <ClCompile Include="keyboardMenuControll.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="fileManagerCommands.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="consoleCommands.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="keyboardMenuControll.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fileManagerCommands.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

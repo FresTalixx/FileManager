@@ -125,11 +125,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="consoleCommands.cpp" />
+    <ClCompile Include="fileManagerCommands.cpp" />
     <ClCompile Include="keyboardMenuControll.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="consoleCommands.h" />
+    <ClInclude Include="fileManagerCommands.h" />
     <ClInclude Include="keyboardMenuControll.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
