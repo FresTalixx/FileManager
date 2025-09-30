@@ -14,7 +14,61 @@
 
 using namespace std;
 
+bool deleteMenuChoice() {
+    int offsetX = 10;
+    int offsetY = 5;
+    int lineLength = 40;
+    int menuHeight = 6;
+    const int choiceMenuSize = 2;
 
+    
+
+    const char* choiceMenu[choiceMenuSize] = {
+        "Yes",
+        "No"
+    };
+
+    // draw a top line
+    SetCursorPosition(offsetX, offsetY);
+    SetColor(WHITE, WHITE);
+    for (int i = 0; i < lineLength; ++i) cout << " ";
+
+    // draw borders
+    SetCursorPosition(offsetX, offsetY + 1);  // offsetY + 1 because we already drawn the first line
+
+    for (int y = 1; y < menuHeight - 1; ++y) {
+        SetCursorPosition(offsetX, offsetY + y); // first column
+        cout << " ";
+        SetCursorPosition(offsetX + lineLength - 1, offsetY + y); // last column
+        cout << " ";
+    }
+
+    // draw a bottom line
+    SetCursorPosition(offsetX, offsetY + menuHeight - 1);
+    for (int i = 0; i < lineLength; ++i) cout << " ";
+
+    // draw the menu itself
+    SetColor(WHITE, RED);
+    for (int y = 1; y < menuHeight - 1; ++y) {
+        for (int x = 1; x < lineLength - 1; ++x) {
+            SetCursorPosition(offsetX + x, offsetY + y);
+            cout << " ";
+        }
+    }
+
+
+
+    SetCursorPosition(offsetX + 5, offsetY + 1);
+    cout << "Do you really wanna delete this?";
+    SetCursorPosition(offsetX, offsetY + 2);
+    int choice = menuControl(choiceMenu, choiceMenuSize, offsetX + 15, offsetY + 3, WHITE, RED, RED, WHITE);
+
+    if (choice == 1) return true; // choice "Yes"
+    else if (choice == 2) return false; // choice "No"
+
+    return false; // as a backup
+
+}
 
 int main()
 {
@@ -49,7 +103,11 @@ int main()
 
             // delete something
             else if (key == 83) {
-                deleteEntity(path, active, elementsCount);
+                bool reallyDelete = deleteMenuChoice();
+
+                if (reallyDelete) deleteEntity(path, active, elementsCount);
+                else continue;
+                
             }
         }
         else if (key == ENTER_KEY) {

@@ -8,15 +8,13 @@
 
 using namespace std;
 
-int menuControl(const char* menu[], int menuSize, int startLineX = 0, int startLineY = 0,
-	int normalTextColor = WHITE, int normalBgColor = BLACK, int highlightedTextColor = BLACK,
-	int highlightedbgColor = WHITE) {
+int menuControl(const char* menu[], int menuSize, int startLineX, int startLineY) {
 
 
 	SetCursorPosition(startLineX, startLineY);
 	int y = startLineY;
 
-	SetColor(normalTextColor, normalBgColor);
+	SetColor(Colors::WHITE, Colors::BLACK);
 
 	for (int i = 0; i < menuSize; ++i) {
 		SetCursorPosition(startLineX, y + i);
@@ -25,7 +23,7 @@ int menuControl(const char* menu[], int menuSize, int startLineX = 0, int startL
 
 
 	SetCursorPosition(startLineX, startLineY);
-	SetColor(highlightedTextColor, highlightedbgColor);
+	SetColor(Colors::BLACK, Colors::WHITE);
 	cout << menu[y - startLineY];
 	ShowConsoleCursor(false);
 	while (1) {
@@ -36,29 +34,29 @@ int menuControl(const char* menu[], int menuSize, int startLineX = 0, int startL
 			switch (key) {
 				case UP_ARROW_KEY:
 					SetCursorPosition(startLineX, y);
-					SetColor(normalTextColor, normalBgColor);
+					SetColor(Colors::WHITE, Colors::BLACK);
 					cout << menu[y - startLineY];
 					--y;
 					if (y < startLineY)
 						y = startLineY + menuSize - 1;
 					SetCursorPosition(startLineX, y);
-					SetColor(highlightedTextColor, highlightedbgColor);
+					SetColor(Colors::BLACK, Colors::WHITE);
 					cout << menu[y - startLineY];
-					SetColor(normalTextColor, normalBgColor);
+					SetColor(Colors::WHITE, Colors::BLACK);
 					
 					break;
 
 				case DOWN_ARROW_KEY:
 					SetCursorPosition(startLineX, y);
-					SetColor(normalTextColor, normalBgColor);
+					SetColor(Colors::WHITE, Colors::BLACK);
 					cout << menu[y - startLineY];
 					++y;
 					if (y > startLineY + menuSize - 1)
 						y = startLineY;
 					SetCursorPosition(startLineX, y);
-					SetColor(highlightedTextColor, highlightedbgColor);
+					SetColor(Colors::BLACK, Colors::WHITE);
 					cout << menu[y - startLineY];
-					SetColor(normalTextColor, normalBgColor);
+					SetColor(Colors::WHITE, Colors::BLACK);
 					
 					break;
 			}
@@ -85,14 +83,14 @@ int menuControlHorizontal(const char* menu[], int menuSize, int startLineX, int 
 	SetColor(Colors::WHITE, Colors::BLACK);
 
 	for (int i = 0; i < menuSize; ++i) {
-		SetCursorPosition(startLineX * i, startLineY);
-		cout << menu[i];
+		SetCursorPosition(x * horizontalGap + i, startLineY);
+		cout << menu[i] << "\n";
 	}
 
 
 	SetCursorPosition(startLineX, startLineY);
 	SetColor(Colors::BLACK, Colors::WHITE);
-	cout << menu[0];
+	cout << menu[x - startLineX];
 	ShowConsoleCursor(false);
 	while (1) {
 		int key = _getch();
@@ -121,7 +119,7 @@ int menuControlHorizontal(const char* menu[], int menuSize, int startLineX, int 
 				++x;
 				if (x > startLineX + menuSize - 1)
 					x = startLineX;
-				SetCursorPosition(x, startLineY);
+				SetCursorPosition(x, startLineX);
 				SetColor(Colors::BLACK, Colors::WHITE);
 				cout << menu[x - startLineX];
 				SetColor(Colors::WHITE, Colors::BLACK);
