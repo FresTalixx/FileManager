@@ -284,3 +284,55 @@ void deleteEntity(filesystem::path& path, int& active, int& elementsCount) {
         index++;
     }
 }
+
+bool deleteMenuChoice(int offsetX, int offsetY, int lineLength, int menuHeight) {
+    const int choiceMenuSize = 2;
+
+    const char* choiceMenu[choiceMenuSize] = {
+        "Yes",
+        "No"
+    };
+
+    // draw a top line
+    SetCursorPosition(offsetX, offsetY);
+    SetColor(WHITE, WHITE);
+    for (int i = 0; i < lineLength; ++i) cout << " ";
+
+    // draw borders
+    SetCursorPosition(offsetX, offsetY + 1);  // offsetY + 1 because we already drawn the first line
+
+    for (int y = 1; y < menuHeight - 1; ++y) {
+        SetCursorPosition(offsetX, offsetY + y); // first column
+        cout << " ";
+        SetCursorPosition(offsetX + lineLength - 1, offsetY + y); // last column
+        cout << " ";
+    }
+
+    // draw a bottom line
+    SetCursorPosition(offsetX, offsetY + menuHeight - 1);
+    for (int i = 0; i < lineLength; ++i) cout << " ";
+
+    // draw the menu itself
+    SetColor(WHITE, RED);
+    for (int y = 1; y < menuHeight - 1; ++y) {
+        for (int x = 1; x < lineLength - 1; ++x) {
+            SetCursorPosition(offsetX + x, offsetY + y);
+            cout << " ";
+        }
+    }
+
+
+
+    SetCursorPosition(offsetX + 5, offsetY + 1);
+    cout << "Do you really wanna delete this?";
+    SetCursorPosition(offsetX, offsetY + 2);
+    int choice = menuControl(choiceMenu, choiceMenuSize, offsetX + 15, offsetY + 3, WHITE, RED, RED, WHITE);
+
+    system("cls");
+
+    if (choice == 1) return true; // choice "Yes"
+    else if (choice == 2) return false; // choice "No"
+
+    return false; // as a backup
+
+}

@@ -46,3 +46,4 @@ int findMatchingWordsFile(const string& filepath, string word);
 void findAndReplaceWordsFile(const string& filepath, string wordToReplace, string wordToReplaceWith);
 void printFileMenu(const char* controlMenuFile[], const int fileMenuSize);
 void deleteEntity(filesystem::path& path, int& active, int& elementsCount);
+bool deleteMenuChoice(int offsetX, int offsetY, int lineLength, int menuHeight);
