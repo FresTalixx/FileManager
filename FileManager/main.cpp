@@ -46,7 +46,7 @@ int main()
             }
 
             // delete something
-            else if (key == 83) {
+            else if (key == DELETE_KEY) {
                 bool reallyDelete = deleteMenuChoice(10, 5, 40, 6);
 
                 if (reallyDelete) deleteEntity(path, active, elementsCount);
@@ -212,6 +212,7 @@ int main()
         }
         else if (key == CNTL_V_KEY) {
             copyFileTo(copyPath, path, deleteCopyPathFile);
+            
             system("cls");
             elementsCount = getDirectoryEntriesCount(path);
         }

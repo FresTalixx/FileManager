@@ -138,7 +138,7 @@ string readDataFromFile(string filePath) {
 void copyFileTo(filesystem::path from, filesystem::path to, bool deleteCopyPathFile) {
 
 
-    if (from.string() != "") {
+    if (from.string() != "" && (from / to.filename() == to)) {
         if (filesystem::is_directory(from)) { // directory check cause directories don't have extensions
             filesystem::create_directories(to / from.filename().string());
             filesystem::copy(from, to / from.filename(), filesystem::copy_options::overwrite_existing);
